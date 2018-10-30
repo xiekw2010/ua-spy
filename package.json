@@ -1,0 +1,47 @@
+{
+  "name": "ua-spy",
+  "version": "1.0.0",
+  "description": "parse user agent string to human readable object like os, device, browser, etc",
+  "keywords": [
+    "useragent",
+    "user agent",
+    "parser",
+    "detector"
+  ],
+  "scripts": {
+    "test": "npm run lint && NODE_ENV=test mocha test/unit/**/*.test.js",
+    "build": "babel src -d lib",
+    "coverage": "nyc --reporter=html --reporter=text mocha test/unit/**/*.test.js",
+    "report-coverage": "npm run coverage && nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "lint": "eslint --fix --ext .js src test --ignore-pattern *.min.js",
+    "pub": "npm run build && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiekw2010/ua-spy.git"
+  },
+  "files": [
+    "src",
+    "lib",
+    "dist"
+  ],
+  "module": "./src/index.js",
+  "main": "./lib/index.js",
+  "author": "xiekw2010",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xiekw2010/ua-spy/issues"
+  },
+  "homepage": "https://github.com/xiekw2010/ua-spy#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "codecov": "^3.1.0",
+    "eslint": "^4.14.0",
+    "eslint-config-antife": "^1.0.0",
+    "mocha": "^4.1.0",
+    "nyc": "^13.0.1",
+    "pre-commit": "^1.2.2",
+    "ramda": "^0.25.0"
+  }
+}
