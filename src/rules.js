@@ -18,6 +18,7 @@ export const OS = [
   ['Linux', /\b(?:X11|Ubuntu|Linux(?= \w+)?);/],
 ]
 
+// TODO add common app, like tb, alipay
 export const APP = [
   ['AliApp', /\bAliApp\(([\w-]+)\/([\d.]+)/],
   ['BBM', /\bBBM\/([\d.]+)/],
