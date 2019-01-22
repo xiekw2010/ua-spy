@@ -68,11 +68,12 @@ const patchParser = detectAll({
     ['YEJIDEVICE', /\bYEJIDEVICE ?([\d.]+)/]
   ],
   sdkPatches: [
-    ['YOURKIT', /\bYOURKIT ?([\d.]+)/]
+    // specific the match groups, name & version
+    ['any', /\bTestName\((?<name>[\w_-]+)\/(?<version>[\d.]+)/],
   ],
 })
 
-const MY_UA = 'MYOS 3.3.3 Mozilla/5.0 YEJIDEVICE 1.1.1 (iPhone; CPU iPhone OS 11_4 like Mac OS X) TB/1.1.1 MYUC 2.0  AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15F79 YOURKIT 2.2.2'
+const MY_UA = 'MYOS 3.3.3 Mozilla/5.0 YEJIDEVICE 1.1.1 (iPhone; CPU iPhone OS 11_4 like Mac OS X) TB/1.1.1 MYUC 2.0  AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15F79 TestName(tname_1-1/99.9)'
 console.log('result is', patchParser(MY_UA))
 
 /*
@@ -94,8 +95,8 @@ console.log('result is', patchParser(MY_UA))
     "version": "1.1.1"
   },
   "sdk": {
-    "name": "YOURKIT",
-    "version": "2.2.2"
+    "name": "tname_1-1",
+    "version": "99.9"
   }
 }
 */

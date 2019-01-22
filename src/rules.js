@@ -20,7 +20,7 @@ export const OS = [
 
 // TODO add common app, like tb, alipay
 export const APP = [
-  ['AliApp', /\bAliApp\(([\w-]+)\/([\d.]+)/],
+  ['AliApp', /\bAliApp\((?<name>[\w-]+)\/(?<version>[\d.]+)/],
   ['BBM', /\bBBM\/([\d.]+)/],
   ['Bukalapak', /\bBukalapak\/([\d.]+).*DanaWallet/],
   ['Skywalker', /\bSkywalker\/([\d.]+).*Dana/i],
@@ -36,7 +36,7 @@ export const BROWSER = [
   ['AlipayClient', /\bAlipayClient\/([\d.]+)/],
   ['NebulaSDK', /\bNebulaSDK\/([\d.]+)/],
   ['WindVane', /\bWindVane\/([\d.]+)/],
-  ['UC', /\bUC?Browser\/(\d+\.\d+)/],
+  ['UC', /\bUC?Browser\/([\d.]+)/],
   ['XiaoMi', /\bMiuiBrowser\/([\d.]+)/],
   ['IEMobile', /\bIEMobile\/(\d+)/],
   ['Edge', /\bEdge\/(\d+)/],

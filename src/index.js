@@ -20,13 +20,21 @@ const detector = (rules, handler) => (userAgent) => {
 
 const defaultHandler = (matches, name) => {
   if (matches && matches.length > 1) {
-    let version = matches[1]
-    if (version.indexOf('_') > -1) {
-      version = version.split('_').join('.')
-    }
-    return {
-      name: name,
-      version,
+    const groups = matches.groups
+    if (groups) {
+      return {
+        name: groups.name || defaults.name,
+        version: groups.version || defaults.version,
+      }
+    } else {
+      let version = matches[1]
+      if (version.indexOf('_') > -1) {
+        version = version.split('_').join('.')
+      }
+      return {
+        name: name,
+        version,
+      }
     }
   }
   return null

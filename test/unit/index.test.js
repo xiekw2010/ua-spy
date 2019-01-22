@@ -10,6 +10,8 @@ const SKYWALKER_IPHONE_UA = 'Skywalker/1.0.0 Mozilla/5.0 (iPhone; CPU iPhone OS 
 const CUSTOM_UA = 'TB/1.3.0 YEJIDEVICE1.3 Mozilla/5.0 YOURKIT 33.44.55.66(iPhone; CPU iPhone OS 11_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15F79 AppContainer/1.3.0.9 DanaKit/1.6.0.12 MYOS 33.3 MYUC 11_33_55'
 const WINDOWS_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36'
 const VIVO_UA = 'Mozilla/5.0 (Linux; Android 5.1.1; vivo X6S A Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044207 Mobile Safari/537.36 MicroMessenger/6.7.3.1340(0x26070332) NetType/4G Language/zh_CN Process/tools'
+const LZD_UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16C101 AliApp(LA/6.99.999) WindVane/8.4.2 750x1334 TestName(tname_1-1/99.9)'
+const TU_UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_2 like Mac OS X; zh-CN) AppleWebKit/537.51.1 (KHTML, like Gecko) Mobile/16C101 UCBrowser/12.2.5.1130 Mobile AliApp(TUnionSDK/0.1.20.3)'
 
 const myDetect = detectAll({
   osPatches: [
@@ -18,6 +20,7 @@ const myDetect = detectAll({
   ],
   appPatches: [
     ['TAOBAO', /\bTB\/([\d.]+)/],
+    ['Lazada', /\bAliApp\(LA\/([\d.]+)/i],
   ],
   browserPatches: [
     ['UC', /\bMYUC ([\d._]+)/],
@@ -27,6 +30,7 @@ const myDetect = detectAll({
   ],
   sdkPatches: [
     ['YOURKIT', /\bYOURKIT ?([\d.]+)/],
+    ['any', /\bTestName\((?<name>[\w_-]+)\/(?<version>[\d.]+)/],
   ],
 })
 
@@ -193,22 +197,22 @@ describe('user-agent detector', function () {
     assert(all.os.name === 'na')
     assert(all.os.version === '-')
   })
-})
 
-const patchParser = detectAll({
-  osPatches: [
-    ['MYOS', /\bMYOS ([\d.]+)/],
-  ],
-  appPatches: [
-    ['TAOBAO', /\bTB\/([\d.]+)/],
-  ],
-  browserPatches: [
-    ['UC', /\bMYUC ([\d._]+)/],
-  ],
-  devicePatches: [
-    ['YEJIDEVICE', /\bYEJIDEVICE ?([\d.]+)/],
-  ],
-  sdkPatches: [
-    ['YOURKIT', /\bYOURKIT ?([\d.]+)/],
-  ],
+  it('detect lzd app', function () {
+    const all = myDetect(LZD_UA)
+    assert(all.app.name === 'Lazada')
+    assert(all.app.version === '6.99.999')
+
+    assert(all.sdk.name === 'tname_1-1')
+    assert(all.sdk.version === '99.9')
+  })
+
+  it('detect tunion app', function () {
+    const all = myDetect(TU_UA)
+    assert(all.app.name === 'TUnionSDK')
+    assert(all.app.version === '0.1.20.3')
+
+    assert(all.browser.name === 'UC')
+    assert(all.browser.version === '12.2.5.1130')
+  })
 })
