@@ -20,11 +20,10 @@ const detector = (rules, handler) => (userAgent) => {
 
 const defaultHandler = (matches, name) => {
   if (matches && matches.length > 1) {
-    const groups = matches.groups
-    if (groups) {
+    if (matches.length > 2) {
       return {
-        name: groups.name || defaults.name,
-        version: groups.version || defaults.version,
+        name: matches[1] || defaults.name,
+        version: matches[2] || defaults.version,
       }
     } else {
       let version = matches[1]

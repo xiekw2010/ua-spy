@@ -68,8 +68,8 @@ const patchParser = detectAll({
     ['YEJIDEVICE', /\bYEJIDEVICE ?([\d.]+)/]
   ],
   sdkPatches: [
-    // specific the match groups, name & version
-    ['any', /\bTestName\((?<name>[\w_-]+)\/(?<version>[\d.]+)/],
+    // The first match is name, the second is version
+    ['any', /\bTestName\(([\w_-]+)\/([\d.]+)/],
   ],
 })
 

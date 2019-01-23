@@ -1,6 +1,6 @@
 {
   "name": "ua-spy",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "parse user agent string to human readable object like os, device, browser, etc",
   "keywords": [
     "useragent",

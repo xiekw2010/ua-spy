@@ -11,6 +11,7 @@ const CUSTOM_UA = 'TB/1.3.0 YEJIDEVICE1.3 Mozilla/5.0 YOURKIT 33.44.55.66(iPhone
 const WINDOWS_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36'
 const VIVO_UA = 'Mozilla/5.0 (Linux; Android 5.1.1; vivo X6S A Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044207 Mobile Safari/537.36 MicroMessenger/6.7.3.1340(0x26070332) NetType/4G Language/zh_CN Process/tools'
 const LZD_UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16C101 AliApp(LA/6.99.999) WindVane/8.4.2 750x1334 TestName(tname_1-1/99.9)'
+const LZD_UA2 = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16C101 aliapP(LA/6.99.999) WindVane/8.4.2 750x1334'
 const TU_UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_2 like Mac OS X; zh-CN) AppleWebKit/537.51.1 (KHTML, like Gecko) Mobile/16C101 UCBrowser/12.2.5.1130 Mobile AliApp(TUnionSDK/0.1.20.3)'
 
 const myDetect = detectAll({
@@ -205,6 +206,14 @@ describe('user-agent detector', function () {
 
     assert(all.sdk.name === 'tname_1-1')
     assert(all.sdk.version === '99.9')
+
+    const pure = detectAll()(LZD_UA)
+    assert(pure.app.name === 'LA')
+    assert(pure.app.version === '6.99.999')
+
+    const pure2 = detectAll()(LZD_UA2)
+    assert(pure2.app.name === 'LA')
+    assert(pure2.app.version === '6.99.999')
   })
 
   it('detect tunion app', function () {
