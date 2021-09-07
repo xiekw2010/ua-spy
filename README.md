@@ -9,9 +9,8 @@ A parser for user agent to simple js object
 
 ## Features
 
-- [x] default plenty rules
-- [x] support custom rules
-- [x] add add SDK
+- ✅ default plenty rules, include APP, OS, DEVICE, SDK
+- ✅ support custom rules
 
 ## How to use
 

@@ -1,6 +1,6 @@
 {
   "name": "ua-spy",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "parse user agent string to human readable object like os, device, browser, etc",
   "keywords": [
     "useragent",
@@ -23,10 +23,12 @@
   "files": [
     "src",
     "lib",
-    "dist"
+    "dist",
+    "index.d.ts"
   ],
   "module": "./src/index.js",
   "main": "./lib/index.js",
+  "typings": "index.d.ts",
   "author": "xiekw2010",
   "license": "MIT",
   "bugs": {

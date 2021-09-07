@@ -91,13 +91,13 @@ export const detectDevice = patches => detector(mergePatches(patches, DEVICE), (
 
 export const detectSDK = patches => detector(mergePatches(patches, SDK), defaultHandler)
 
-export const detectAll = (patches = {}) => (ua = '') => {
+export const detectAll = (patches = {}) => (userAgent = '') => {
   const { osPatches, appPatches, browserPatches, devicePatches, sdkPatches } = patches
   return {
-    os: detectOS(osPatches)(ua),
-    app: detectApp(appPatches)(ua),
-    browser: detectBrowser(browserPatches)(ua),
-    device: detectDevice(devicePatches)(ua),
-    sdk: detectSDK(sdkPatches)(ua),
+    os: detectOS(osPatches)(userAgent),
+    app: detectApp(appPatches)(userAgent),
+    browser: detectBrowser(browserPatches)(userAgent),
+    device: detectDevice(devicePatches)(userAgent),
+    sdk: detectSDK(sdkPatches)(userAgent),
   }
 }
